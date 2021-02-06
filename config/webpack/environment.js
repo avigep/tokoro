@@ -8,7 +8,8 @@ environment.loaders.prepend('vue', vue)
 environment.plugins.append("Provide", new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
-    Popper: ['popper.js', 'default']
+    Popper: ['popper.js', 'default'],
+    Bootstrap: ['bootstrap']
 }))
 
 module.exports = environment
