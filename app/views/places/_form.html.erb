@@ -25,7 +25,7 @@
       <div class='form-check'>
         <br>
         <%= form.check_box :public, { class: 'form-check-input' }, 1 , nil %>
-        <%= form.label :public, "Share will all", class: 'form-check-label' %>
+        <%= form.label :public, "Share with all", class: 'form-check-label' %>
         <hr>
         <h6>OR Check the users to share with</h6>
         <% User.all_except(current_user).limit(5).each do |user| %>

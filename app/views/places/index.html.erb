@@ -25,11 +25,13 @@
           <%= "Latutude: #{place.lat} Longitude: #{place.lng} "%><br>
           Note: <%= place.note %><br>
           Visibility: <%= place.public ? 'Public' : 'Private' %>
+          <hr>
           <% if place.user == current_user %>
-            <hr>
             <%= link_to 'Show', place, class: 'card-link' %>
             <%= link_to 'Edit', edit_place_path(place), class: 'card-link' %>
             <%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' }, class: 'card-link' %>
+          <% else %>
+            Shared by: <%= place.user.email %>
           <% end %>
         </li>
       <% end %>
