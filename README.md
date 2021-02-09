@@ -40,12 +40,9 @@
 
 
 ## Dependencies
-- Ruby 2.6.6
-- Rails 6.0.3
+- ruby 2.7.2p137
+- Rails 6.1.1
 - PG
 
 ## Seed entries
 
-```
-Devise user: id: test@test.com / pass: test001
-```
