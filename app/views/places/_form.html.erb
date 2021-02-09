@@ -28,7 +28,7 @@
         <%= form.label :public, "Share will all", class: 'form-check-label' %>
         <hr>
         <h6>OR Check the users to share with</h6>
-        <% User.all_except(current_user).each do |user| %>
+        <% User.all_except(current_user).limit(5).each do |user| %>
           <%= form.check_box :shared_users, { class: 'form-check-input', multiple: true }, user.email, nil %>
           <%= form.label :shared_users, user.email, class: 'form-check-label' %>
         <% end %>

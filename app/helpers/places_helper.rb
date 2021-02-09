@@ -1,5 +1,5 @@
 module PlacesHelper
-  def build_google_maps_marker
+  def places_map_builder
     @places.map do |place|
         {
           lat: place.lat,

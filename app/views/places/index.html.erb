@@ -41,7 +41,7 @@
 <script type="text/javascript">
 handler = Gmaps.build('Google');
 handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers(<%=raw build_google_maps_marker %>);
+    markers = handler.addMarkers(<%=raw places_map_builder %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
 });

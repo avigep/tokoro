@@ -1,24 +1,45 @@
-# README
+# [Tokoro]('https://japanesetactics.com/what-does-tokoro-mean-in-japanese-here-is-the-answer') is collection of places!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Showcase
+#### Login Page
+![Login](public/showcase/1.png)
 
-Things you may want to cover:
+#### Sign Up Page
+![Sign Up](public/showcase/2.png)
 
-* Ruby version
+#### Password Reset Page
+![Password Reset Page](public/showcase/3.png)
 
-* System dependencies
+#### Browse Users
+![Browse Users](public/showcase/4.png)
 
-* Configuration
+#### Browse Users (Pagination)
+![Login](public/showcase/5.png)
 
-* Database creation
 
-* Database initialization
+#### Browse Places (Public)
+![Browse Places (Public)](public/showcase/6.png)
 
-* How to run the test suite
+#### Browse Places (With Marker info)
+![Browse Places (With Marker info)](public/showcase/7.png)
 
-* Services (job queues, cache servers, search engines, etc.)
+#### Browse own places
+![Browse own places](public/showcase/8.png)
 
-* Deployment instructions
+#### Browse places shared with me
+![Browse places shared with me](public/showcase/9.png)
 
-* ...
+#### Add a new place
+![Add a new place](public/showcase/10.png)
+
+
+## Dependencies
+- Ruby 2.6.6
+- Rails 6.0.3
+- PG
+
+## Seed entries
+
+```
+Devise user: id: test@test.com / pass: test001
+```
