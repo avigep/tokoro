@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_155827) do
+ActiveRecord::Schema.define(version: 2021_02_08_170157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 2021_02_08_155827) do
     t.index ["user_id"], name: "index_places_on_user_id"
   end
 
+  create_table "shares", force: :cascade do |t|
+    t.bigint "shared_by_id", null: false
+    t.bigint "shared_with_id", null: false
+    t.bigint "place_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["place_id"], name: "index_shares_on_place_id"
+    t.index ["shared_by_id"], name: "index_shares_on_shared_by_id"
+    t.index ["shared_with_id"], name: "index_shares_on_shared_with_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -40,4 +51,7 @@ ActiveRecord::Schema.define(version: 2021_02_08_155827) do
   end
 
   add_foreign_key "places", "users"
+  add_foreign_key "shares", "places"
+  add_foreign_key "shares", "users", column: "shared_by_id"
+  add_foreign_key "shares", "users", column: "shared_with_id"
 end

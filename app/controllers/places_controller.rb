@@ -22,10 +22,11 @@ class PlacesController < ApplicationController
 
   # POST /places or /places.json
   def create
+    share_emails = params[:place].delete :shared_users
     @place = current_user.places.new(place_params)
 
     respond_to do |format|
-      if @place.save
+      if @place.save_with_share(share_emails)
         format.html { redirect_to @place, notice: "Place was successfully created." }
         format.json { render :show, status: :created, location: @place }
       else
@@ -65,6 +66,6 @@ class PlacesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def place_params
-      params.require(:place).permit(:name, :note, :lat, :lng, :user_id, :public)
+      params.require(:place).permit(:name, :note, :lat, :lng, :user_id, :public, shared_users: [])
     end
 end

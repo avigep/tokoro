@@ -31,14 +31,11 @@
     <%= form.text_field :lng %>
   </div>
 
-  <div class="field">
-    <%= form.label "Public" %>
-    <%= form.check_box :public, checked: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+  <div class='form-check form-check-inline'>
+    <% User.all.each do |user| %>
+      <%= form.label :shared_users, user.email %>
+      <%= form.check_box :shared_users, { multiple: true }, user.email, nil %>
+    <% end %>
   </div>
 
   <div class="actions">
