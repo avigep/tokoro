@@ -9,14 +9,14 @@
 </nav>
 
 <div class='row'>
-<% @members.each do |member| %>
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title"><%= member.email %></h5>
-      <h6 class="card-subtitle mb-2 text-muted"><%= member.public_places.count %> Places shared</h6>
-      <%= link_to 'View Places', member_path(id: member.id), class: 'card-link' %>
+  <% @members.each do |member| %>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= member.email %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= member.public_places.count %> Places shared</h6>
+        <%= link_to 'View Places', member_path(id: member.id), class: 'card-link' %>
+      </div>
     </div>
-  </div>
-<% end %>
-</div>
-
+  <% end %>
+</div><br>
+<%= will_paginate @members %>

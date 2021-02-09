@@ -10,8 +10,8 @@ class PlacesController < ApplicationController
               when 'places_shared_with_me'
                 current_user.places_shared_with
               else
-                Place.all
-              end
+                Place
+              end.paginate(page: params[:page])
   end
 
   # GET /places/1 or /places/1.json

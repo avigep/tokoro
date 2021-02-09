@@ -13,4 +13,6 @@ class User < ApplicationRecord
   def public_places
     places.where(public: true)
   end
+
+  self.per_page = 15
 end
