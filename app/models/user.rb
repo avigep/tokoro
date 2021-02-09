@@ -10,9 +10,11 @@ class User < ApplicationRecord
   has_many :shared_places, through: :shares_by_me, source: :place, class_name: 'Place'
   has_many :places_shared_with, through: :shared_with_me, source: :place, class_name: 'Place'
 
+  scope :all_except, ->(user) { where.not(id: user) }
+
+  self.per_page = 15
+
   def public_places
     places.where(public: true)
   end
-
-  self.per_page = 15
 end

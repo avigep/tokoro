@@ -12,7 +12,7 @@
 <%= link_to 'Add a new Place', new_place_path, class: 'btn btn-primary' %><br><br>
 <div class="card" style="width: 18rem;">
   <div class="card-header">
-    Total places : <%= current_user.places.count %>
+    Total places : <%= @places.count %>
   </div>
   <ul class="list-group list-group-flush">
     <% @places.each do |place| %>

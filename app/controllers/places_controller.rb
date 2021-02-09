@@ -5,12 +5,10 @@ class PlacesController < ApplicationController
   # GET /places or /places.json
   def index
     @places = case params[:selection]
-              when 'my_places'
-                current_user.places
               when 'places_shared_with_me'
                 current_user.places_shared_with
               else
-                Place
+                current_user.places
               end.paginate(page: params[:page])
   end
 

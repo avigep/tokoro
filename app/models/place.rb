@@ -11,7 +11,12 @@ class Place < ApplicationRecord
   self.per_page = 10
 
   def save_with_share(share_emails)
-    save && update_shared_with(share_emails)
+    if share_emails.present?
+      self.public = false
+      save && update_shared_with(share_emails)
+    else
+      save
+    end
   end
 
   def update_shared_with(share_emails)
