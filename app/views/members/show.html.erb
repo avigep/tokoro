@@ -6,18 +6,31 @@
   </ol>
 </nav>
 
-<div class="card" style="width: 18rem;">
-  <div class="card-header">
-    Places Shared by <%= @member.email %><br>
-    Total places : <%= @member.public_places.count %>
+<div style="width: 100%; overflow: hidden;">
+  <div id="map" style='width: 800px; height: 450px; float: right;'>
   </div>
-  <ul class="list-group list-group-flush">
-    <% @member.public_places.each do |place |%>
-      <li class="list-group-item">
-        Name: <%= place.name %><br>
-        <%= "Latutude: #{place.lat} Longitude: #{place.lng} "%><br>
-        Note: <%= place.note %>
-      </li>
-    <% end %>
-  </ul>
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      Places Shared by <%= @member.email %><br>
+      Total places : <%= @member.public_places.count %>
+    </div>
+    <ul class="list-group list-group-flush">
+      <% @member.public_places.each do |place |%>
+        <li class="list-group-item">
+          Name: <%= place.name %><br>
+          <%= "Latutude: #{place.lat} Longitude: #{place.lng} "%><br>
+          Note: <%= place.note %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
+
+<script type="text/javascript">
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw build_google_maps_marker %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+});
+</script>

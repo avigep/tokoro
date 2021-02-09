@@ -10,26 +10,39 @@
 <%= link_to 'My places', places_path(selection: 'my_places'), class: 'btn btn-light' %>
 <%= link_to 'Places shared with me', places_path(selection: 'places_shared_with_me'), class: 'btn btn-light' %>
 <%= link_to 'Add a new Place', new_place_path, class: 'btn btn-primary' %><br><br>
-<div class="card" style="width: 18rem;">
-  <div class="card-header">
-    Total places : <%= @places.count %>
+
+<div style="width: 100%; overflow: hidden;">
+  <div id="map" style='width: 800px; height: 450px; float: right;'>
   </div>
-  <ul class="list-group list-group-flush">
-    <% @places.each do |place| %>
-      <li class="list-group-item">
-        Name: <%= place.name %><br>
-        <%= "Latutude: #{place.lat} Longitude: #{place.lng} "%><br>
-        Note: <%= place.note %><br>
-        Visibility: <%= place.public ? 'Public' : 'Private' %>
-        <% if place.user == current_user %>
-          <hr>
-          <%= link_to 'Show', place, class: 'card-link' %>
-          <%= link_to 'Edit', edit_place_path(place), class: 'card-link' %>
-          <%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' }, class: 'card-link' %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-  <%= will_paginate @places %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      Total places : <%= @places.count %>
+    </div>
+    <ul class="list-group list-group-flush">
+      <% @places.each do |place| %>
+        <li class="list-group-item">
+          Name: <%= place.name %><br>
+          <%= "Latutude: #{place.lat} Longitude: #{place.lng} "%><br>
+          Note: <%= place.note %><br>
+          Visibility: <%= place.public ? 'Public' : 'Private' %>
+          <% if place.user == current_user %>
+            <hr>
+            <%= link_to 'Show', place, class: 'card-link' %>
+            <%= link_to 'Edit', edit_place_path(place), class: 'card-link' %>
+            <%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' }, class: 'card-link' %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <%= will_paginate @places %>
+  </div>
 </div>
 
+<script type="text/javascript">
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw build_google_maps_marker %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+});
+</script>
