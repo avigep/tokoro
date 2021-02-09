@@ -1,5 +1,11 @@
-# [Tokoro]('https://japanesetactics.com/what-does-tokoro-mean-in-japanese-here-is-the-answer') is collection of places!
+# [Tokoro]('https://japanesetactics.com/what-does-tokoro-mean-in-japanese-here-is-the-answer') is a collection of places!
 
+## Heroku deploy
+- https://polar-depths-22464.herokuapp.com
+  
+  Usernames: test001@test.com / test002@test.com  / test003@test.com 
+  
+  Password: test009
 ## Showcase
 #### Login Page
 ![Login](public/showcase/1.png)
