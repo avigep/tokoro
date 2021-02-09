@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: places
+#
+#  id         :bigint           not null, primary key
+#  name       :text
+#  note       :text
+#  lat        :decimal(10, 6)
+#  lng        :decimal(10, 6)
+#  user_id    :bigint           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  public     :boolean          default(TRUE)
+#
 class Place < ApplicationRecord
   belongs_to :user
   has_many :shares, dependent: :destroy
