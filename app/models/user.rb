@@ -10,4 +10,7 @@ class User < ApplicationRecord
   has_many :shared_places, through: :shares_by_me, source: :place, class_name: 'Place'
   has_many :places_shared_with, through: :shared_with_me, source: :place, class_name: 'Place'
 
+  def public_places
+    places.where(public: true)
+  end
 end

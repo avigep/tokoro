@@ -6,36 +6,28 @@
     <li class="breadcrumb-item active" aria-current="page">Places</li>
   </ol>
 </nav>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Note</th>
-      <th>Lat</th>
-      <th>Lng</th>
-      <th>User</th>
-      <th>Public?</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
+<%= link_to 'My places', places_path(selection: 'my_places'), class: 'btn btn-light' %>
+<%= link_to 'Places shared with me', places_path(selection: 'places_shared_with_me'), class: 'btn btn-light' %>
+<%= link_to 'Add a new Place', new_place_path, class: 'btn btn-primary' %><br><br>
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    Total places : <%= current_user.places.count %>
+  </div>
+  <ul class="list-group list-group-flush">
     <% @places.each do |place| %>
-      <tr>
-        <td><%= place.name %></td>
-        <td><%= place.note %></td>
-        <td><%= place.lat %></td>
-        <td><%= place.lng %></td>
-        <td><%= place.user_id %></td>
-        <td><%= place.public %></td>
-        <td><%= link_to 'Show', place %></td>
-        <td><%= link_to 'Edit', edit_place_path(place) %></td>
-        <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <li class="list-group-item">
+        Name: <%= place.name %><br>
+        <%= "Latutude: #{place.lat} Longitude: #{place.lng} "%><br>
+        Note: <%= place.note %><br>
+        Visibility: <%= place.public ? 'Public' : 'Private' %>
+        <% if place.user == current_user %>
+          <hr>
+          <%= link_to 'Show', place, class: 'card-link' %>
+          <%= link_to 'Edit', edit_place_path(place), class: 'card-link' %>
+          <%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' }, class: 'card-link' %>
+        <% end %>
+      </li>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Place', new_place_path %>
+  </ul>
+</div>

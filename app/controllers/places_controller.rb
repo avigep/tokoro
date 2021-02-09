@@ -4,7 +4,14 @@ class PlacesController < ApplicationController
 
   # GET /places or /places.json
   def index
-    @places = Place.all
+    @places = case params[:selection]
+              when 'my_places'
+                current_user.places
+              when 'places_shared_with_me'
+                current_user.places_shared_with
+              else
+                Place.all
+              end
   end
 
   # GET /places/1 or /places/1.json
@@ -66,6 +73,6 @@ class PlacesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def place_params
-      params.require(:place).permit(:name, :note, :lat, :lng, :user_id, :public, shared_users: [])
+      params.require(:place).permit(:name, :note, :lat, :lng, :user_id, :public, :selection, shared_users: [])
     end
 end

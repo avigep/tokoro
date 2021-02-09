@@ -1,6 +1,6 @@
 class Place < ApplicationRecord
   belongs_to :user
-  has_many :shares
+  has_many :shares, dependent: :destroy
 
   has_many :shared_with, through: :shares, foreign_key: 'shared_with_id', class_name: 'User'
 
