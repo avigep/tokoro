@@ -21,9 +21,9 @@
     <ul class="list-group list-group-flush">
       <% @places.each do |place| %>
         <li class="list-group-item">
-          Name: <%= place.name %><br>
-          <%= "Latutude: #{place.lat} Longitude: #{place.lng} "%><br>
-          Note: <%= place.note %><br>
+          <span class='place_name'>Name: <%= place.name %><br></span>
+          <span class='place_location'><%= "Latutude: #{place.lat} Longitude: #{place.lng} "%><br></span>
+          <span class='place_note'>Note: <%= place.note %><br></span>
           Visibility: <%= place.public ? 'Public' : 'Private' %>
           <hr>
           <% if place.user == current_user %>

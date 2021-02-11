@@ -8,36 +8,32 @@
   Password: test009
 ## Showcase
 #### Login Page
-![Login](public/showcase/1.png)
-
-#### Sign Up Page
-![Sign Up](public/showcase/2.png)
-
-#### Password Reset Page
-![Password Reset Page](public/showcase/3.png)
+<img src="public/showcase/1.png" alt="drawing" width="450"/>
 
 #### Browse Users
-![Browse Users](public/showcase/4.png)
+<img src="public/showcase/4.png" alt="drawing" width="450"/>
 
 #### Browse Users (Pagination)
-![Login](public/showcase/5.png)
+<img src="public/showcase/5.png" alt="drawing" width="450"/>
 
 
 #### Browse Places (Public)
-![Browse Places (Public)](public/showcase/6.png)
+<img src="public/showcase/6.png" alt="drawing" width="450"/>
 
 #### Browse Places (With Marker info)
-![Browse Places (With Marker info)](public/showcase/7.png)
+<img src="public/showcase/7.png" alt="drawing" width="450"/>
 
 #### Browse own places
-![Browse own places](public/showcase/8.png)
+<img src="public/showcase/8.png" alt="drawing" width="450"/>
 
 #### Browse places shared with me
-![Browse places shared with me](public/showcase/9.png)
+<img src="public/showcase/9.png" alt="drawing" width="450"/>
 
 #### Add a new place
-![Add a new place](public/showcase/10.png)
+<img src="public/showcase/10.png" alt="drawing" width="450"/>
 
+
+# Local Setup
 
 ## Dependencies
 - ruby 2.7.2p137
@@ -45,4 +41,22 @@
 - PG
 
 ## Seed entries
+`bundle exec rails db:seed`
 
+User 1
+- email:test001@test.com pass:test009
+- All public places
+
+User 2 
+- email:test002@test.com pass:test009
+- Mix of public and private places
+
+User 3
+- email:test003@test.com pass:test009
+- All private places
+
+## Test
+`bundle exec rspec`
+
+Current code coverage 
+<img src="public/showcase/test-coverage.png" alt="drawing" width="450"/>

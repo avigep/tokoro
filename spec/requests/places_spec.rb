@@ -15,19 +15,49 @@
 RSpec.describe "/places", type: :request do
   # Place. As you add validations to Place, be sure to
   # adjust the attributes here as well.
+  let(:user) { FactoryBot.create :user }
+  let(:user_shared) { FactoryBot.create :user }
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      "name"=>"private - updated",
+      "note"=>"private note",
+      "lat"=>"12",
+      "lng"=>"12",
+      "user_id"=> user.id
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      "name"=>"private - updated",
+      "note"=>"private note",
+      "lat"=>"1289192182",
+      "lng"=>"12891921821289192182",
+      "user_id"=> user.id
+    }
   }
 
+  before do
+    ENV['GOOGLE_MAPS_API_KEY'] = 'test-key'
+    login_as_user
+  end
+
   describe "GET /index" do
-    it "renders a successful response" do
-      Place.create! valid_attributes
-      get places_url
-      expect(response).to be_successful
+    context "all places" do
+      it "renders a successful response" do
+        Place.create! valid_attributes
+        get places_url
+        expect(response).to be_successful
+      end
+    end
+
+    context "places shared with me" do
+      it "renders a successful response" do
+        Place.create! valid_attributes
+        get places_url params: {selection: 'places_shared_with_me'}
+        expect(response).to be_successful
+      end
     end
   end
 
@@ -58,8 +88,9 @@ RSpec.describe "/places", type: :request do
     context "with valid parameters" do
       it "creates a new Place" do
         expect {
-          post places_url, params: { place: valid_attributes }
+          post places_url, params: { place: valid_attributes.merge({"shared_users"=>[user_shared.email]}) }
         }.to change(Place, :count).by(1)
+        .and change(Share, :count).by(1)
       end
 
       it "redirects to the created place" do
@@ -77,7 +108,7 @@ RSpec.describe "/places", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post places_url, params: { place: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.status).to eq(422)
       end
     end
   end
@@ -85,14 +116,20 @@ RSpec.describe "/places", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          "name"=>"updated name",
+          "note"=>"private note",
+          "lat"=>"12",
+          "lng"=>"12",
+          "user_id"=> user.id
+        }
       }
 
       it "updates the requested place" do
         place = Place.create! valid_attributes
         patch place_url(place), params: { place: new_attributes }
         place.reload
-        skip("Add assertions for updated state")
+        expect(place.name).to eq new_attributes['name']
       end
 
       it "redirects to the place" do
@@ -107,7 +144,7 @@ RSpec.describe "/places", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         place = Place.create! valid_attributes
         patch place_url(place), params: { place: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.status).to eq(422)
       end
     end
   end
