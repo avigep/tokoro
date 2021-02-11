@@ -16,7 +16,7 @@ Place.create!(
     lat: 35.6804,
     lng: 139.7690,
     name: 'user_1: Tokyo',
-    note: 'Place of work, since 2011'
+    note: 'Place of work, since 2011',
     user: user_1,
     public: true
 )
@@ -25,7 +25,7 @@ Place.create!(
     lat: 19.0760,
     lng: 72.8777,
     name: 'user_1: Mumbai',
-    note: 'Where I went to college'
+    note: 'Where I went to college',
     user: user_1,
     public: true
 )
@@ -34,7 +34,7 @@ Place.create!(
     lat: 21.1458,
     lng: 79.0882,
     name: 'user_1: Nagpur',
-    note: 'Birthplace'
+    note: 'Birthplace',
     user: user_1,
     public: true
 )
@@ -43,7 +43,7 @@ Place.create!(
     lat: 18.5204,
     lng: 73.8567,
     name: 'user_1: Pune',
-    note: 'Where I did my schooling'
+    note: 'Where I did my schooling',
     user: user_1,
     public: true
 )
@@ -53,7 +53,7 @@ Place.create!(
     lat: 41.3851,
     lng: 2.1734,
     name: 'user_2: Barcelona',
-    note: 'Place where I did my training'
+    note: 'Place where I did my training',
     user: user_2,
     public: true
 )
@@ -62,7 +62,7 @@ Place.create!(
     lat: 51.1657,
     lng: 10.4515,
     name: 'user_2: Germany',
-    note: 'Went there in winter!!'
+    note: 'Went there in winter!!',
     user: user_2,
     public: true
 )
@@ -71,7 +71,7 @@ shared_place_1 = Place.create!(
     lat: 46.2276,
     lng: 2.2137,
     name: 'user_2: France',
-    note: 'Birthplace'
+    note: 'For LeWeb conference',
     user: user_2,
     public: false
 )
@@ -91,8 +91,8 @@ Share.create!(
 shared_place_2 = Place.create(
     lat: 10.8231,
     lng: 106.6297,
-    name: 'user_2: ho chi minh city',
-    note: 'Holidays'
+    name: 'user_2: Ho chi minh city',
+    note: 'Holidays',
     user: user_2,
     public: false
 )
@@ -112,19 +112,19 @@ Share.create!(
 # Places for user_3, all private
 
 shared_place_3 = Place.create!(
-    lat: 41.3851,
-    lng: 2.1734,
+    lat: 1.3521,
+    lng: 103.8198,
     name: 'user_3: Singapore',
-    note: 'Private holiday'
+    note: 'Private holiday',
     user: user_3,
     public: false
 )
 
 shared_place_4 = Place.create!(
-    lat: 51.1657,
-    lng: 10.4515,
-    name: 'user_3: Thiland',
-    note: 'Private holiday'
+    lat: 15.8700,
+    lng: 100.9925,
+    name: 'user_3: Thailand',
+    note: 'Private holiday',
     user: user_3,
     public: false
 )

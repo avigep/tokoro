@@ -1,11 +1,11 @@
 # [Tokoro]('https://japanesetactics.com/what-does-tokoro-mean-in-japanese-here-is-the-answer') is a collection of places!
 
 ## Heroku deploy
-- https://polar-depths-22464.herokuapp.com
+- https://polar-depths-22464.herokuapp.com/
   
   Usernames: test001@test.com / test002@test.com  / test003@test.com 
   
-  Password: test009
+  Password(common for all users): test009
 ## Showcase
 #### Login Page
 <img src="public/showcase/1.png" alt="drawing" width="450"/>
@@ -39,20 +39,21 @@
 - ruby 2.7.2p137
 - Rails 6.1.1
 - PG
-
+- Google maps API key with maps enabled [check this]('https://developers.google.com/maps/documentation/javascript/get-api-key')
+  - `EXPORT GOOGLE_MAPS_API_KEY=xxxxx`
 ## Seed entries
 `bundle exec rails db:seed`
 
 User 1
-- email:test001@test.com pass:test009
+- email: test001@test.com pass:test009
 - All public places
 
 User 2 
-- email:test002@test.com pass:test009
+- email: test002@test.com pass:test009
 - Mix of public and private places
 
 User 3
-- email:test003@test.com pass:test009
+- email: test003@test.com pass:test009
 - All private places
 
 ## Test
